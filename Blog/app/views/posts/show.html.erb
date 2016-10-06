@@ -1,5 +1,4 @@
-<% provide(:page_title, @post.title) %>
-<% provide(:blog_active, 'active') %>
+
 
 <div class="container">
 	<div class="row">
@@ -10,6 +9,22 @@
 				 <p><%= @post.description %></p>
 		</div>
 	</div>
+
+	<h3>Comment</h3>
+	<% @post.comments.each do |comment| %>
+	<p><%= time_ago_in_words comment.created_at %> ago</p>
+	<p><%= comment.text %></p>
+	<p><%= link_to 'Destroy', [@post, comment], method: :delete, data: { confirm: 'Are you sure?' } %></p>
+	<% end %>
+
+	<%= form_for([@post, @post.comments.build]) do |f| %>
+	<div class="field">
+		<p><%= f.text_area :text, size: "40x5" %></p>
+	</div>
+	<div class="actions">
+		<p><%= f.submit "Post Comment" %></p>
+	</div>
+	<% end %>
 </div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |
