@@ -1,20 +1,24 @@
 
 
   <div class="container">
-    <div class="row">  
-      <% @posts.each do |post| %>
-       <div class="col-md-12 text-center">
-        <h1><%= post.title %></h1>
-        <div class="col-md-7 col-md-offset-3 text-center" ">
-        <p><%= truncate(post.description, length:180) %> <%= link_to 'Readmore', post %> </p>
+    <div class="row">
+     <% @posts.each do |post| %>
+      <div class="col-md-12">
+        <div class="col-md-4">
+          <div class="col-md-12">
+            <div class="thumbnail">
+              <%= link_to(image_tag("https://static.pexels.com/photos/119672/pexels-photo-119672-large.jpeg"), post) %>
+            </div>
+          </div>
         </div>
-        <br>
-         </div>
-      <% end %>
-       
-     
+        <div class="col-md-8">
+           <h1 class="margintop"><%= post.title %></h1>
+            <p><%= truncate(post.description, length:180) %> <%= link_to 'Readmore', post %> </p>
+        </div>
+      </div>
+         <% end %>
     </div>
   </div>
 
-<%= link_to 'New Post', new_post_path %>
+  <%= link_to 'New Post', new_post_path %>
 
